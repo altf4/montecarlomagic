@@ -10,7 +10,7 @@ from magic.decklist import Decklist
 parser = argparse.ArgumentParser(description='Automating MtG goldfishing')
 parser.add_argument('--turns', '-t', type=int, default=10, help='Maximum number of turns per game')
 parser.add_argument('--matches', '-m', type=int, default=100000, help='Matches to simulate')
-parser.add_argument('--verbose', '-v', type=bool, default=False, help='Verbose output')
+parser.add_argument('--verbose', '-v', action='store_true', help='Verbose output')
 args = parser.parse_args()
 
 def printcardlist(cards):
