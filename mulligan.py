@@ -17,7 +17,7 @@ def mulligan_burn(hand):
         return True
 
     # If we just have too many lands, mull
-    if landcount > 3:
+    if landcount >= 4:
         return True
 
     if len(hand) == 5:
