@@ -29,6 +29,7 @@ def win_condition(boardstate):
 mull_stats = {}
 for i in range(8):
     mull_stats[i] = 0
+scry_top_count = 0
 
 win_stats = {}
 for i in range(args.turns+1):
@@ -44,6 +45,14 @@ for match in range(args.matches):
         handsize -= 1
         boardstate.scoop()
         boardstate.draw(handsize)
+
+    if handsize < 7:
+        scry_top = mulligan.scry_burn(boardstate.hand, boardstate.library[0])
+        if not scry_top:
+            card = boardstate.library.pop(0)
+            boardstate.library.append(card)
+        else:
+            scry_top_count += 1
 
     # Gather some stats on mulligans
     mull_stats[handsize] += 1
@@ -114,3 +123,6 @@ print("Mull stats:")
 for handsize, count in mull_stats.items():
     if mull_stats[7-handsize] > 0:
         print("\tKept on", 7-handsize, str(round((mull_stats[7-handsize] / args.matches)*100, 6)) + "%")
+
+mull_total = args.matches - mull_stats[7]
+print("\tScried top:", str(round((scry_top_count / mull_total)*100, 2)) + "%")

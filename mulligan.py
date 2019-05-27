@@ -29,3 +29,27 @@ def mulligan_burn(hand):
 
     # Otherwise, keep
     return False
+
+def scry_burn(hand, topcard):
+    """Should we scry this on top?
+    """
+    landcount = 0
+    for card in hand:
+        if card.land:
+            landcount += 1
+
+    low_lands = landcount <= 1
+    flooded = landcount >= 2
+
+    # Are we digging for a land?
+    if low_lands:
+        # Put a land on top, everything else bottom
+        return topcard.land
+
+    # Are we already flooded and need spells?
+    if flooded:
+        # Put a spell on top, everything else bottom
+        return not topcard.land
+
+    # Else, just default to keeping on top
+    return True
