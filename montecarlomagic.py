@@ -11,6 +11,7 @@ parser = argparse.ArgumentParser(description='Automating MtG goldfishing')
 parser.add_argument('--turns', '-t', type=int, default=10, help='Maximum number of turns per game')
 parser.add_argument('--matches', '-m', type=int, default=100000, help='Matches to simulate')
 parser.add_argument('--verbose', '-v', action='store_true', help='Verbose output')
+parser.add_argument('--draw', '-d', action='store_true', help='Assume we\'re on the draw')
 args = parser.parse_args()
 
 decklist = Decklist()
@@ -55,9 +56,12 @@ for match in range(args.matches):
         # Upkeep
         # NOTE: Nothing here for now
 
-        # Draw
-        if turn > 0:
+        # Are we on the play or on the draw?
+        if args.draw:
             boardstate.draw(1)
+        else:
+            if turn > 0:
+                boardstate.draw(1)
 
         # Play the highest priority thing in our hand
         # Sort hand by priority
@@ -99,18 +103,14 @@ for match in range(args.matches):
     boardstate.scoop()
 
 # Print stats
-print(win_stats)
 total_count, total = 0, 0
 for turn, count in win_stats.items():
     total += turn * count
     total_count += count
 
-print(total_count, total)
 print("Average Win on Turn: ", round(total / total_count, 5))
 
-print(mull_stats)
 print("Mull stats:")
-print("Kept on 7: ", str(round((mull_stats[7] / args.matches)*100, 6)) + "%")
-print("Kept on 6: ", str(round((mull_stats[6] / args.matches)*100, 6)) + "%")
-print("Kept on 5: ", str(round((mull_stats[5] / args.matches)*100, 6)) + "%")
-print("Kept on 4: ", str(round((mull_stats[4] / args.matches)*100, 6)) + "%")
+for handsize, count in mull_stats.items():
+    if mull_stats[7-handsize] > 0:
+        print("\tKept on", 7-handsize, str(round((mull_stats[7-handsize] / args.matches)*100, 6)) + "%")

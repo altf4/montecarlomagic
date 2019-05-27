@@ -27,4 +27,5 @@ def mulligan_burn(hand):
     if len(hand) == 7:
         pass
 
+    # Otherwise, keep
     return False

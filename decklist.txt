@@ -1,2 +1,2 @@
-20 Mountain
-40 Lightning Bolt
+18 Mountain
+42 Lightning Bolt
