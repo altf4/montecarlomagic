@@ -29,23 +29,25 @@ optional arguments:
 ### 18 Lands
 ```
 ./montecarlomagic.py -t 15 -m 100000
-Average Win on Turn:  5.55662
+Average Win on Turn:  5.51162
 Mull stats:
-	Kept on 7 81.964%
-	Kept on 6 15.051%
-	Kept on 5 2.447%
-	Kept on 4 0.538%
+	Kept on 7 81.75%
+	Kept on 6 15.256%
+	Kept on 5 2.455%
+	Kept on 4 0.539%
+	Scried top: 55.51%
 ```
 
 ### 22 Lands
 ```
 ./montecarlomagic.py -t 15 -m 100000
-Average Win on Turn:  5.76035
+Average Win on Turn:  5.69706
 Mull stats:
-	Kept on 7 74.908%
-	Kept on 6 20.542%
-	Kept on 5 3.852%
-	Kept on 4 0.698%
+	Kept on 7 75.271%
+	Kept on 6 20.225%
+	Kept on 5 3.83%
+	Kept on 4 0.674%
+	Scried top: 56.93%
 ```
 
 Predictably, Burn performs better with 18 lands than 22!
@@ -56,34 +58,36 @@ Predictably, Burn performs better with 18 lands than 22!
 
 ```
 ./montecarlomagic.py -t 15 -m 100000
-Average Win on Turn:  5.77248
+Average Win on Turn:  5.68888
 Mull stats:
-	Kept on 7 58.335%
-	Kept on 6 26.994%
-	Kept on 5 10.093%
-	Kept on 4 4.578%
+	Kept on 7 58.017%
+	Kept on 6 27.2%
+	Kept on 5 10.268%
+	Kept on 4 4.515%
+	Scried top: 51.06%
 ```
 
 ### Always Mull 4+ Land Hands (But keep on 4)
 
 ```
 ./montecarlomagic.py -t 15 -m 100000
-Average Win on Turn:  5.55661
+Average Win on Turn:  5.51162
 Mull stats:
-	Kept on 7 81.722%
-	Kept on 6 15.257%
-	Kept on 5 2.483%
-	Kept on 4 0.538%
+	Kept on 7 81.75%
+	Kept on 6 15.256%
+	Kept on 5 2.455%
+	Kept on 4 0.539%
+	Scried top: 55.51%
 ```
 
 ### Mull 4+ Land Hands, but Keep No-Land'ers
-(Vancouver-scry not yet implemented, so maybe this performs better actually)
-
 ```
-Average Win on Turn:  5.76094
+./montecarlomagic.py -t 15 -m 100000
+Average Win on Turn:  5.73129
 Mull stats:
-	Kept on 7 88.817%
-	Kept on 6 10.515%
-	Kept on 5 0.649%
-	Kept on 4 0.019%
+	Kept on 7 88.722%
+	Kept on 6 10.584%
+	Kept on 5 0.682%
+	Kept on 4 0.012%
+	Scried top: 54.8%
 ```
