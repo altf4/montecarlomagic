@@ -1,4 +1,5 @@
 from magic.card import Card
+import copy
 
 import magic.cardlogic
 
@@ -27,4 +28,4 @@ class Decklist():
     def get_library(self):
         """Get a sample shuffled library from the decklist
         """
-        return self.deck.copy()
+        return copy.deepcopy(self.deck)

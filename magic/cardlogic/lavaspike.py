@@ -1,16 +1,12 @@
 from magic.card import Card
 from magic.manacost import ManaCost
 
-class Mountain(Card):
+class LavaSpike(Card):
     def __init__(self, id):
         super().__init__(id)
-        self.land = True
-        self.id = id
-        self.tapsfor["red"] = True
-        self.priority = 100
 
     def __str__(self):
-        return "Mountain, " + str(self.id)
+        return "Lava Spike, " + str(self.id)
 
     def canplay(self, boardstate):
         # Check for normal conditions
@@ -21,7 +17,8 @@ class Mountain(Card):
         return True
 
     def manacost(self, boardstate):
-        return ManaCost("0")
+        return ManaCost("r")
 
     def play(self, boardstate):
+        boardstate.opponent_life -= 3
         return super().play(boardstate)

@@ -8,6 +8,7 @@ class Boardstate():
     battlefield = []
     hand = []
     lands = []
+    exile = []
     opponent_life = 20
     life = 20
 
@@ -23,12 +24,14 @@ class Boardstate():
     def scoop(self):
         """Reset the gamestate to all cards in library
         """
+        self.library.clear()
         self.library = self.decklist.get_library()
         shuffle(self.library)
         self.graveyard = []
         self.battlefield = []
         self.hand = []
         self.lands = []
+        self.exile = []
         self.untap()
         self.opponent_life = 20
         self.life = 20
@@ -54,7 +57,7 @@ class Boardstate():
         # TODO: Discard to hand size
         pass
 
-    def autotapper(self, cost):
+    def autotapper(self, cost, test=False):
         """Tap lands to pay for spells
         Returns whether this succeeded or not. False means the spell didn't cast
         """
@@ -107,6 +110,7 @@ class Boardstate():
             return False
 
         # Okay, now actually tap the Lands
-        for land in tap_queue:
-            land.istapped = True
+        if not test:
+            for land in tap_queue:
+                land.istapped = True
         return True

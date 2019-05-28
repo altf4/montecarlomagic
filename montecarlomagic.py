@@ -63,7 +63,10 @@ for match in range(args.matches):
         boardstate.untap()
 
         # Upkeep
-        # NOTE: Nothing here for now
+        # Cast any cards on suspend:
+        for card in boardstate.exile:
+            if boardstate.autotapper(card.manacost(boardstate)):
+                card.play(boardstate)
 
         # Are we on the play or on the draw?
         if args.draw:
@@ -99,6 +102,9 @@ for match in range(args.matches):
                 print("\t", card)
             print("Graveyard:")
             for card in boardstate.graveyard:
+                print("\t", card)
+            print("Exile:")
+            for card in boardstate.exile:
                 print("\t", card)
             print("\n")
 

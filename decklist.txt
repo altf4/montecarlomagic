@@ -1,2 +1,5 @@
 18 Mountain
-42 Lightning Bolt
+30 Lightning Bolt
+4 Skullcrack
+4 Lava Spike
+4 Rift Bolt
