@@ -1,28 +1,25 @@
 import csv
+from collections import defaultdict
 from abc import ABC, abstractmethod
 from magic.manacost import ManaCost
+
 
 class Card(ABC):
     """ Abstract class for a card. All cards inherit from this
     """
-    istapped = False
-    ishistoric = False
-    name = ""
-    priority = 0
-    legendary = 0
-    land = False
-    id = -1
-    tapsfor = {}
-    fetchable = False
-
     def __init__(self, id):
         self.id = id
-        self.tapsfor["white"] = True
-        self.tapsfor["blue"] = True
-        self.tapsfor["black"] = True
-        self.tapsfor["red"] = True
-        self.tapsfor["green"] = True
-        self.tapsfor["colorless"] = True
+        self.istapped = False
+        self.ishistoric = False
+        self.name = ""
+        self.priority = 0
+        self.legendary = 0
+        self.land = False
+        self.fetchable = False
+        self.power = 0
+        self.summoning_sick = True
+        self.iscreature = False
+        self.tapsfor = defaultdict(lambda: False)
 
     def __str__(self):
         return self.name
@@ -55,10 +52,11 @@ class Card(ABC):
     def play(self, boardstate):
         if self.land:
             boardstate.thisturn["playedland"] = True
-            # Remove the card from hand
             boardstate.hand.remove(self)
             boardstate.lands.append(self)
+        elif self.iscreature:
+            boardstate.hand.remove(self)
+            boardstate.battlefield.append(self)
         else:
-            # Remove the card from hand
             boardstate.hand.remove(self)
             boardstate.graveyard.append(self)

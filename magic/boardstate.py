@@ -53,6 +53,7 @@ class Boardstate():
             card.istapped = False
         for card in self.battlefield:
             card.istapped = False
+            card.summoning_sick = False
 
     def cleanup(self):
         # TODO: Discard to hand size
@@ -124,3 +125,10 @@ class Boardstate():
         else:
             self.battlefield.remove(card)
         self.graveyard.append(card)
+
+    def attackwith(self, card):
+        """ Attack opponent with the given card
+        """
+        assert(card.iscreature)
+        card.istapped = True
+        self.opponent_life -= card.power

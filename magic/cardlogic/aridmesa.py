@@ -31,7 +31,8 @@ class AridMesa(Card):
         # Is there a dual land we can get first?
         for card in boardstate.library:
             # TODO ASSUME that all our fetchable duals can be fetched
-            if card.land and card.fetchable and (len(card.tapsfor) > 1):
+            tapsforcount = sum(card.tapsfor.values())
+            if card.land and card.fetchable and (tapsforcount > 1):
                 boardstate.library.remove(card)
                 boardstate.lands.append(card)
                 shuffle(boardstate.library)

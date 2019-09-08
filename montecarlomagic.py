@@ -1,5 +1,6 @@
 #! /usr/bin/python3
 import argparse
+import progressbar
 import mulligan
 
 from magic.card import Card
@@ -36,7 +37,7 @@ win_stats = {}
 for i in range(args.turns+1):
     win_stats[i] = 0
 
-for match in range(args.matches):
+for match in progressbar.progressbar(range(args.matches)):
     handsize = 7
 
     # Draw starting hand
@@ -82,10 +83,14 @@ for match in range(args.matches):
                     if boardstate.autotapper(card.manacost(boardstate)):
                         card.play(boardstate)
                         keepgoing = True
+                        break
 
         # Activate any abilities second
 
         # Attack
+        for card in boardstate.battlefield:
+            if card.iscreature and not card.istapped and not card.summoning_sick:
+                boardstate.attackwith(card)
 
         if args.verbose:
             print("=== Turn", turn+1, "===")
