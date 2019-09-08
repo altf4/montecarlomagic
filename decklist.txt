@@ -1,5 +1,10 @@
-18 Mountain
-30 Lightning Bolt
-4 Skullcrack
+4 Mountain
+4 Sunbaked Canyon
+4 Inspiring Vantage
+4 Wooded Foothills
+2 Sacred Foundry
+22 Lightning Bolt
+8 Skullcrack
+4 Boros Charm
 4 Lava Spike
 4 Rift Bolt

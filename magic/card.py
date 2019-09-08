@@ -3,6 +3,8 @@ from abc import ABC, abstractmethod
 from magic.manacost import ManaCost
 
 class Card(ABC):
+    """ Abstract class for a card. All cards inherit from this
+    """
     istapped = False
     ishistoric = False
     name = ""
@@ -11,6 +13,7 @@ class Card(ABC):
     land = False
     id = -1
     tapsfor = {}
+    fetchable = False
 
     def __init__(self, id):
         self.id = id

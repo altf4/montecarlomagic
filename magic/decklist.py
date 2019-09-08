@@ -15,11 +15,13 @@ class Decklist():
             self.deck = []
             lines = f.readlines()
             lines = [x.strip() for x in lines]
+            id = 1
             for line in lines:
                 # Parse out the quantity prefix
-                for i in range(int(line.split(" ", 1)[0])):
+                for _ in range(int(line.split(" ", 1)[0])):
                     cardname = (line.split(" ", 1)[1]).replace(" ", "")
-                    card = getattr(magic.cardlogic, cardname)(i+1)
+                    card = getattr(magic.cardlogic, cardname)(id)
+                    id += 1
                     self.deck.append(card)
 
     def __len__(self):

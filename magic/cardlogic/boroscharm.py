@@ -1,17 +1,12 @@
 from magic.card import Card
 from magic.manacost import ManaCost
 
-class Mountain(Card):
+class BorosCharm(Card):
     def __init__(self, id):
         super().__init__(id)
-        self.land = True
-        self.id = id
-        self.tapsfor["red"] = True
-        self.priority = 99
-        self.fetchable = True
-        
+
     def __str__(self):
-        return "Mountain, " + str(self.id)
+        return "Boros Charm, " + str(self.id)
 
     def canplay(self, boardstate):
         # Check for normal conditions
@@ -22,7 +17,8 @@ class Mountain(Card):
         return True
 
     def manacost(self, boardstate):
-        return ManaCost("0")
+        return ManaCost("wr")
 
     def play(self, boardstate):
+        boardstate.opponent_life -= 4
         return super().play(boardstate)

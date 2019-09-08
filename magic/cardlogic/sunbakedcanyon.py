@@ -1,17 +1,17 @@
 from magic.card import Card
 from magic.manacost import ManaCost
 
-class Mountain(Card):
+class SunbakedCanyon(Card):
     def __init__(self, id):
         super().__init__(id)
         self.land = True
         self.id = id
         self.tapsfor["red"] = True
-        self.priority = 99
-        self.fetchable = True
-        
+        self.tapsfor["white"] = True
+        self.priority = 100
+
     def __str__(self):
-        return "Mountain, " + str(self.id)
+        return "Sunbaked Canyon, " + str(self.id)
 
     def canplay(self, boardstate):
         # Check for normal conditions

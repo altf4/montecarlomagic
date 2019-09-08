@@ -12,14 +12,16 @@ parser.add_argument('--turns', '-t', type=int, default=10, help='Maximum number 
 parser.add_argument('--matches', '-m', type=int, default=100000, help='Matches to simulate')
 parser.add_argument('--verbose', '-v', action='store_true', help='Verbose output')
 parser.add_argument('--draw', '-d', action='store_true', help='Assume we\'re on the draw')
+parser.add_argument('--life', '-l', type=int, default=20, help='Start opponent\'s life total at value')
 args = parser.parse_args()
 
 decklist = Decklist()
-boardstate = Boardstate(decklist)
+boardstate = Boardstate(decklist, starting_life=args.life)
 
 if args.verbose:
     print("=== Cards in deck:", len(decklist), "===")
 
+boardstate.opponent_life = args.life
 def win_condition(boardstate):
     if boardstate.opponent_life <= 0:
         return True
@@ -29,7 +31,6 @@ def win_condition(boardstate):
 mull_stats = {}
 for i in range(8):
     mull_stats[i] = 0
-scry_top_count = 0
 
 win_stats = {}
 for i in range(args.turns+1):
@@ -46,14 +47,6 @@ for match in range(args.matches):
         boardstate.scoop()
         boardstate.draw(handsize)
 
-    if handsize < 7:
-        scry_top = mulligan.scry_burn(boardstate.hand, boardstate.library[0])
-        if not scry_top:
-            card = boardstate.library.pop(0)
-            boardstate.library.append(card)
-        else:
-            scry_top_count += 1
-
     # Gather some stats on mulligans
     mull_stats[handsize] += 1
 
@@ -68,6 +61,7 @@ for match in range(args.matches):
             if boardstate.autotapper(card.manacost(boardstate)):
                 card.play(boardstate)
 
+        # Draw
         # Are we on the play or on the draw?
         if args.draw:
             boardstate.draw(1)
@@ -75,6 +69,7 @@ for match in range(args.matches):
             if turn > 0:
                 boardstate.draw(1)
 
+        # Main Phase
         # Play the highest priority thing in our hand
         # Sort hand by priority
         keepgoing = True
@@ -87,6 +82,10 @@ for match in range(args.matches):
                     if boardstate.autotapper(card.manacost(boardstate)):
                         card.play(boardstate)
                         keepgoing = True
+
+        # Activate any abilities second
+
+        # Attack
 
         if args.verbose:
             print("=== Turn", turn+1, "===")
@@ -131,4 +130,3 @@ for handsize, count in mull_stats.items():
         print("\tKept on", 7-handsize, str(round((mull_stats[7-handsize] / args.matches)*100, 6)) + "%")
 
 mull_total = args.matches - mull_stats[7]
-print("\tScried top:", str(round((scry_top_count / mull_total)*100, 2)) + "%")

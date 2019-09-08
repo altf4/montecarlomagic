@@ -15,11 +15,12 @@ class Boardstate():
     # Dict of flags (default false) affecting the gamestate this turn
     thisturn = {}
 
-    def __init__(self, decklist):
+    def __init__(self, decklist, starting_life=20):
         self.decklist = decklist
         self.library = self.decklist.get_library()
         shuffle(self.library)
         self.thisturn["playedland"] = False
+        self.starting_life = starting_life
 
     def scoop(self):
         """Reset the gamestate to all cards in library
@@ -33,8 +34,8 @@ class Boardstate():
         self.lands = []
         self.exile = []
         self.untap()
-        self.opponent_life = 20
-        self.life = 20
+        self.opponent_life = self.starting_life
+        self.life = self.starting_life
 
     def draw(self, amount=1):
         if amount > len(self.library):
@@ -114,3 +115,12 @@ class Boardstate():
             for land in tap_queue:
                 land.istapped = True
         return True
+
+    def destroy(self, card):
+        """ Destroy (or sacrifice) given permanent on the battlefield
+        """
+        if card.land:
+            self.lands.remove(card)
+        else:
+            self.battlefield.remove(card)
+        self.graveyard.append(card)
