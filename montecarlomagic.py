@@ -92,6 +92,21 @@ for match in progressbar.progressbar(range(args.matches)):
             if card.iscreature and not card.istapped and not card.summoning_sick:
                 boardstate.attackwith(card)
 
+        # Main Phase 2
+        # Play the highest priority thing in our hand
+        # Sort hand by priority
+        keepgoing = True
+        while keepgoing:
+            boardstate.hand.sort(key=lambda x: x.priority, reverse=True)
+            keepgoing = False
+            for card in boardstate.hand:
+                # What is our highest priority card to play?
+                if card.canplay(boardstate):
+                    if boardstate.autotapper(card.manacost(boardstate)):
+                        card.play(boardstate)
+                        keepgoing = True
+                        break
+
         if args.verbose:
             print("=== Turn", turn+1, "===")
             print("Opponent's Life: ", boardstate.opponent_life)

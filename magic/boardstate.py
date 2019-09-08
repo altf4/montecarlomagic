@@ -48,6 +48,7 @@ class Boardstate():
     def untap(self):
         # Reset "end of turn" flags
         self.thisturn = dict.fromkeys(self.thisturn, False)
+        self.opponent_life_start_turn = self.opponent_life
 
         for card in self.lands:
             card.istapped = False

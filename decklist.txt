@@ -4,7 +4,7 @@
 4 Wooded Foothills
 4 Arid Mesa
 2 Sacred Foundry
-10 Lightning Bolt
+6 Lightning Bolt
 4 Skullcrack
 4 Boros Charm
 4 Lava Spike
@@ -12,3 +12,4 @@
 4 Goblin Guide
 4 Eidolon Of The Great Revel
 4 Lightning Helix
+4 Skewer The Critics
