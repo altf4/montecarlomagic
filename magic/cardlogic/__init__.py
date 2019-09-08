@@ -8,3 +8,4 @@ from magic.cardlogic.inspiringvantage import InspiringVantage
 from magic.cardlogic.sacredfoundry import SacredFoundry
 from magic.cardlogic.woodedfoothills import WoodedFoothills
 from magic.cardlogic.boroscharm import BorosCharm
+from magic.cardlogic.aridmesa import AridMesa

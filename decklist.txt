@@ -1,7 +1,8 @@
-4 Mountain
+2 Mountain
 4 Sunbaked Canyon
 4 Inspiring Vantage
 4 Wooded Foothills
+2 Arid Mesa
 2 Sacred Foundry
 22 Lightning Bolt
 8 Skullcrack
