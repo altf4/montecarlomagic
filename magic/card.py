@@ -36,6 +36,12 @@ class Card(ABC):
         """
         pass
 
+    def scoop(self, boardstate):
+        """Reset this card back to it's original state. Undo any internal state changes
+        """
+        self.summoning_sick = True
+        self.istapped = False
+
     @abstractmethod
     def canplay(self, boardstate):
         """Is this a legal play right now?

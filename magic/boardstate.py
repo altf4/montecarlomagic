@@ -3,31 +3,47 @@ from magic.manacost import ManaCost
 
 
 class Boardstate():
-    library = []
-    graveyard = []
-    battlefield = []
-    hand = []
-    lands = []
-    exile = []
-    opponent_life = 20
-    life = 20
-
-    # Dict of flags (default false) affecting the gamestate this turn
-    thisturn = {}
-
-    def __init__(self, decklist, starting_life=20):
+    def __init__(self, decklist, opening_hand=None, cards_put_back=None, starting_life=20):
+        self.graveyard = []
+        self.battlefield = []
+        self.hand = []
+        self.lands = []
+        self.exile = []
+        self.opponent_life = 20
+        self.life = 20
+        # Dict of flags (default false) affecting the gamestate this turn
+        self.thisturn = {}
+        self.thisturn["playedland"] = False
         self.decklist = decklist
         self.library = self.decklist.get_library()
-        shuffle(self.library)
-        self.thisturn["playedland"] = False
+        # Make a copy of the list of cards. We'll use it later to reset the boardstate
+        self._allcards = list(self.library)
         self.starting_life = starting_life
+        for card_id in opening_hand:
+            # Search library for that ID
+            for library_card in self.library:
+                if library_card.id == card_id:
+                    # Move to hand
+                    self.hand.append(library_card)
+                    self.library.remove(library_card)
+                    break
+        shuffle(self.library)
+        for card in cards_put_back:
+            # Search library for that ID
+            for library_card in self.library:
+                if library_card.id == card_id:
+                    # Move to bottom of library
+                    self.library.remove(library_card)
+                    self.library.append(library_card)
+                    break
 
     def scoop(self):
         """Reset the gamestate to all cards in library
         """
-        self.library.clear()
-        self.library = self.decklist.get_library()
+        self.library = list(self._allcards)
         shuffle(self.library)
+        for card in self.library:
+            card.scoop(self)
         self.graveyard = []
         self.battlefield = []
         self.hand = []

@@ -14,6 +14,10 @@ class RiftBolt(Card):
             suspended = " [Suspended]"
         return "Rift Bolt, " + str(self.id) + suspended
 
+    def scoop(self, boardstate):
+        super().scoop(boardstate)
+        self._suspended = False
+
     def canplay(self, boardstate):
         # Check for normal conditions
         return super().canplay(boardstate)

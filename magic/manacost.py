@@ -1,10 +1,8 @@
 class ManaCost():
-    cmc = 0
-    colors = {}
-    colorless = 0
-    cost_string = ""
-
     def __init__(self, cost_string):
+        self.cmc = 0
+        self.colors = {}
+        self.colorless = 0
         self.cost_string = cost_string
         if cost_string[0].isdigit():
             self.colorless = int(cost_string[0])
