@@ -176,7 +176,6 @@ for mull_to in range(1, 8):
     turn_score_mean = statistics.mean(turn_scores)
     final_turn_scores[mull_to] = turn_score_mean
     mulligan_stats.append(mull_count / args.matches)
-    print("Mulligan'd down: ", mull_count / args.matches * 100, "%")
     print("Mulling to ", mull_to, " kills on turn:", round(turn_score_mean, 6))
 
 print("\n============================")
