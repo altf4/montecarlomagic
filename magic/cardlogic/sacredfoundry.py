@@ -10,6 +10,7 @@ class SacredFoundry(Card):
         self.tapsfor["white"] = True
         self.priority = 101
         self.fetchable = True
+        self.name = "Sacred Foundry"
 
     def __str__(self):
         return "Sacred Foundry, " + str(self.id)

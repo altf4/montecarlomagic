@@ -4,6 +4,7 @@ from magic.manacost import ManaCost
 class LightningBolt(Card):
     def __init__(self, id):
         super().__init__(id)
+        self.name = "Lightning Bolt"
 
     def __str__(self):
         return "Lightning Bolt, " + str(self.id)

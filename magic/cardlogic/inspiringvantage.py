@@ -9,6 +9,7 @@ class InspiringVantage(Card):
         self.tapsfor["red"] = True
         self.tapsfor["white"] = True
         self.priority = 101
+        self.name = "Inspiring Vantage"
 
     def __str__(self):
         return "Inspiring Vantage, " + str(self.id)

@@ -5,6 +5,7 @@ class SkewerTheCritics(Card):
     def __init__(self, id):
         super().__init__(id)
         self.priority = 220
+        self.name = "Skewer The Critics"
 
     def __str__(self):
         return "Skewer The Critics, " + str(self.id)

@@ -9,6 +9,7 @@ class AridMesa(Card):
         self.land = True
         self.id = id
         self.priority = 100
+        self.name = "Arid Mesa"
 
     def __str__(self):
         return "Arid Mesa, " + str(self.id)

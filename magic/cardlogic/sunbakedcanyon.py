@@ -9,6 +9,7 @@ class SunbakedCanyon(Card):
         self.tapsfor["red"] = True
         self.tapsfor["white"] = True
         self.priority = 100
+        self.name = "Sunbaked Canyon"
 
     def __str__(self):
         return "Sunbaked Canyon, " + str(self.id)

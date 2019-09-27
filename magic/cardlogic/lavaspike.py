@@ -4,6 +4,7 @@ from magic.manacost import ManaCost
 class LavaSpike(Card):
     def __init__(self, id):
         super().__init__(id)
+        self.name = "Lava Spike"
 
     def __str__(self):
         return "Lava Spike, " + str(self.id)

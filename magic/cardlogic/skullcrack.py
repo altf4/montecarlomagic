@@ -4,6 +4,7 @@ from magic.manacost import ManaCost
 class Skullcrack(Card):
     def __init__(self, id):
         super().__init__(id)
+        self.name = "Skullcrack"
 
     def __str__(self):
         return "Skullcrack, " + str(self.id)

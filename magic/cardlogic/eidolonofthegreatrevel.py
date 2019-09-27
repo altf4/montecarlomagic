@@ -7,6 +7,7 @@ class EidolonOfTheGreatRevel(Card):
         self.power = 2
         self.iscreature = True
         self.priority = 180
+        self.name = "Eidolon Of The Great Revel"
 
     def __str__(self):
         return "Eidolon Of The Great Revel, " + str(self.id)

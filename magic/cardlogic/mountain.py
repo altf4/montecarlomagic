@@ -9,7 +9,8 @@ class Mountain(Card):
         self.tapsfor["red"] = True
         self.priority = 99
         self.fetchable = True
-        
+        self.name = "Mountain"
+
     def __str__(self):
         return "Mountain, " + str(self.id)
 

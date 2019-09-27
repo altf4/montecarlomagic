@@ -7,6 +7,7 @@ class RiftBolt(Card):
         # High priority. We want to get rid of these pretty quick
         self.priority = 80
         self._suspended = False
+        self.name = "Rift Bolt"
 
     def __str__(self):
         suspended = ""

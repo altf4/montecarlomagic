@@ -7,6 +7,7 @@ class GoblinGuide(Card):
         self.power = 2
         self.iscreature = True
         self.priority = 200
+        self.name = "Goblin Guide"
 
     def __str__(self):
         return "Goblin Guide, " + str(self.id)

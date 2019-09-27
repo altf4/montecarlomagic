@@ -9,6 +9,7 @@ class WoodedFoothills(Card):
         self.land = True
         self.id = id
         self.priority = 100
+        self.name = "Wooded Foothills"
 
     def __str__(self):
         return "Wooded Foothills, " + str(self.id)
