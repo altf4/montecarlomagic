@@ -12,7 +12,7 @@ import rollout
 
 parser = argparse.ArgumentParser(description='Automating MtG goldfishing')
 parser.add_argument('--turns', '-t', type=int, default=20, help='Maximum number of turns per game')
-parser.add_argument('--matches', '-m', type=int, default=50, help='Matches to simulate')
+parser.add_argument('--matches', '-m', type=int, default=50, help='Number of matches to simulate')
 parser.add_argument('--verbose', '-v', action='store_true', help='Verbose output')
 parser.add_argument('--draw', '-d', action='store_true', help='Assume we\'re on the draw')
 parser.add_argument('--life', '-l', type=int, default=20, help='Start opponent\'s life total at value')
