@@ -22,40 +22,40 @@ optional arguments:
                         Maximum number of turns per game
   --matches MATCHES, -m MATCHES
                         Number of matches to simulate
+  --iterations ITERATIONS, -i ITERATIONS
+                        When evaluating a hand, how many rollouts to try
   --verbose, -v         Verbose output
   --draw, -d            Assume we're on the draw
   --life LIFE, -l LIFE  Start opponent's life total at value
 ```
 
 ## Sample Results for Modern Burn
-(Almost all the cards implemented. Just missing a couple)
 
-### 18 Lands
+### 20 Lands, standard burn list
 ```
-./montecarlomagic.py -m 160
+./montecarlomagic.py -m 1000
 Mull stats:
-	Kept on 1 :  0.108668 %
-	Kept on 2 :  2.375173 %
-	Kept on 3 :  3.926071 %
-	Kept on 4 :  10.9729 %
-	Kept on 5 :  17.382812 %
-	Kept on 6 :  27.734375 %
-	Kept on 7 :  37.5 %
-This list kills on average on turn:  4.653703
+	Kept on 1 :  0.002188 %
+	Kept on 2 :  0.544744 %
+	Kept on 3 :  1.760797 %
+	Kept on 4 :  6.114637 %
+	Kept on 5 :  15.779834 %
+	Kept on 6 :  33.6978 %
+	Kept on 7 :  42.1 %
+This list kills on average on turn:  4.365609
 ```
 
-### 22 Lands
+### What if we replaced Goblin Guide with lands?
 ```
-./montecarlomagic.py -m 160
 Mull stats:
-	Kept on 1 :  0.041891 %
-	Kept on 2 :  1.633764 %
-	Kept on 3 :  3.581303 %
-	Kept on 4 :  8.761597 %
-	Kept on 5 :  24.65332 %
-	Kept on 6 :  30.078125 %
-	Kept on 7 :  31.25 %
-This list kills on average on turn:  4.728068
+	Kept on 1 :  0.0 %
+	Kept on 2 :  0.746123 %
+	Kept on 3 :  2.311757 %
+	Kept on 4 :  7.272795 %
+	Kept on 5 :  17.144525 %
+	Kept on 6 :  37.3248 %
+	Kept on 7 :  35.2 %
+This list kills on average on turn:  4.914534
 ```
 
-Predictably, Burn performs better with 18 lands than 22!
+Predictably, Burn performs better with the Goblin Guides in the deck!

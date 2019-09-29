@@ -13,6 +13,7 @@ import rollout
 parser = argparse.ArgumentParser(description='Automating MtG goldfishing')
 parser.add_argument('--turns', '-t', type=int, default=20, help='Maximum number of turns per game')
 parser.add_argument('--matches', '-m', type=int, default=50, help='Number of matches to simulate')
+parser.add_argument('--iterations', '-i', type=int, default=25, help='When evaluating a hand, how many rollouts to try')
 parser.add_argument('--verbose', '-v', action='store_true', help='Verbose output')
 parser.add_argument('--draw', '-d', action='store_true', help='Assume we\'re on the draw')
 parser.add_argument('--life', '-l', type=int, default=20, help='Start opponent\'s life total at value')
@@ -43,7 +44,7 @@ for mull_to in range(1, 8):
             kill_turn = rollout.rollout_hand(decklist,
                                              hand,
                                              cards_put_back,
-                                             iterations=args.matches,
+                                             iterations=args.iterations,
                                              verbose=args.verbose)
             if kill_turn < performance:
                 performance = kill_turn
