@@ -14,3 +14,4 @@ from magic.cardlogic.eidolonofthegreatrevel import EidolonOfTheGreatRevel
 from magic.cardlogic.lightninghelix import LightningHelix
 from magic.cardlogic.skewerthecritics import SkewerTheCritics
 from magic.cardlogic.monestaryswiftspear import MonestarySwiftspear
+from magic.cardlogic.shock import Shock
