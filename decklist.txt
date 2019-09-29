@@ -1,10 +1,10 @@
 2 Mountain
 4 Sunbaked Canyon
 4 Inspiring Vantage
-2 Wooded Foothills
+4 Wooded Foothills
 4 Arid Mesa
-2 Sacred Foundry
-10 Lightning Bolt
+4 Sacred Foundry
+6 Lightning Bolt
 4 Skullcrack
 4 Boros Charm
 4 Lava Spike

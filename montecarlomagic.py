@@ -69,7 +69,7 @@ print("Mull stats:")
 for i in range(len(mulligan_stats)):
     flip_one = list(mulligan_stats)
     flip_one[0] = 1 - flip_one[0]
-    print("\tKept on", i+1, ": ", prod(flip_one) * 100, "%")
+    print("\tKept on", i+1, ": ", round(prod(flip_one) * 100, 6), "%")
     mulligan_stats.pop(0)
 
 print("This list kills on average on turn: ", round(final_turn_scores[7], 6))

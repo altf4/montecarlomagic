@@ -21,7 +21,7 @@ optional arguments:
   --turns TURNS, -t TURNS
                         Maximum number of turns per game
   --matches MATCHES, -m MATCHES
-                        Matches to simulate
+                        Number of matches to simulate
   --verbose, -v         Verbose output
   --draw, -d            Assume we're on the draw
   --life LIFE, -l LIFE  Start opponent's life total at value
@@ -32,26 +32,30 @@ optional arguments:
 
 ### 18 Lands
 ```
-./montecarlomagic.py -t 15 -m 100000
-Average Win on Turn:  5.51162
+./montecarlomagic.py -m 160
 Mull stats:
-	Kept on 7 81.75%
-	Kept on 6 15.256%
-	Kept on 5 2.455%
-	Kept on 4 0.539%
-	Scried top: 55.51%
+	Kept on 1 :  0.108668 %
+	Kept on 2 :  2.375173 %
+	Kept on 3 :  3.926071 %
+	Kept on 4 :  10.9729 %
+	Kept on 5 :  17.382812 %
+	Kept on 6 :  27.734375 %
+	Kept on 7 :  37.5 %
+This list kills on average on turn:  4.653703
 ```
 
 ### 22 Lands
 ```
-./montecarlomagic.py -t 15 -m 100000
-Average Win on Turn:  5.69706
+./montecarlomagic.py -m 160
 Mull stats:
-	Kept on 7 75.271%
-	Kept on 6 20.225%
-	Kept on 5 3.83%
-	Kept on 4 0.674%
-	Scried top: 56.93%
+	Kept on 1 :  0.041891 %
+	Kept on 2 :  1.633764 %
+	Kept on 3 :  3.581303 %
+	Kept on 4 :  8.761597 %
+	Kept on 5 :  24.65332 %
+	Kept on 6 :  30.078125 %
+	Kept on 7 :  31.25 %
+This list kills on average on turn:  4.728068
 ```
 
 Predictably, Burn performs better with 18 lands than 22!
