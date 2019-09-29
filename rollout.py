@@ -78,7 +78,8 @@ def rollout_hand(decklist,
 
             # Attack
             for card in boardstate.battlefield:
-                if card.iscreature and not card.istapped and not card.summoning_sick:
+                not_summoning_sick = (not card.summoning_sick) or (card.keywords["haste"])
+                if card.cardtypes["creature"] and not card.istapped and not_summoning_sick:
                     boardstate.attackwith(card)
 
             # Main Phase 2
@@ -104,7 +105,7 @@ def rollout_hand(decklist,
                     print("\t", card)
                 print("Lands:")
                 for card in boardstate.lands:
-                    print("\t", card)
+                    print("\t", card, "tapped:", card.istapped)
                 print("Hand:")
                 for card in boardstate.hand:
                     print("\t", card)

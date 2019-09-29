@@ -5,9 +5,10 @@ class GoblinGuide(Card):
     def __init__(self, id):
         super().__init__(id)
         self.power = 2
-        self.iscreature = True
+        self.cardtypes["creature"] = True
         self.priority = 200
         self.name = "Goblin Guide"
+        self.keywords["haste"] = True
 
     def __str__(self):
         return "Goblin Guide, " + str(self.id)
@@ -24,5 +25,4 @@ class GoblinGuide(Card):
         return ManaCost("r")
 
     def play(self, boardstate):
-        self.summoning_sick = False
         return super().play(boardstate)

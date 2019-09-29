@@ -31,15 +31,16 @@ class ImportTest(unittest.TestCase):
         self.assertEqual(cardcounts["Mountain"], 2)
         self.assertEqual(cardcounts["Sunbaked Canyon"], 4)
         self.assertEqual(cardcounts["Inspiring Vantage"], 4)
-        self.assertEqual(cardcounts["Wooded Foothills"], 2)
+        self.assertEqual(cardcounts["Wooded Foothills"], 4)
         self.assertEqual(cardcounts["Arid Mesa"], 4)
         self.assertEqual(cardcounts["Sacred Foundry"], 2)
-        self.assertEqual(cardcounts["Lightning Bolt"], 10)
+        self.assertEqual(cardcounts["Lightning Bolt"], 4)
         self.assertEqual(cardcounts["Skullcrack"], 4)
         self.assertEqual(cardcounts["Boros Charm"], 4)
         self.assertEqual(cardcounts["Lava Spike"], 4)
         self.assertEqual(cardcounts["Rift Bolt"], 4)
         self.assertEqual(cardcounts["Goblin Guide"], 4)
+        self.assertEqual(cardcounts["Monestary Swiftspear"], 4)
         self.assertEqual(cardcounts["Eidolon Of The Great Revel"], 4)
         self.assertEqual(cardcounts["Lightning Helix"], 4)
         self.assertEqual(cardcounts["Skewer The Critics"], 4)
@@ -56,12 +57,12 @@ class RolloutTest(unittest.TestCase):
                                            [1, 2, 3, 4, 5, 6, 7],
                                            [],
                                            iterations=10)
-        self.assertEqual(performance, 9.4)
+        self.assertEqual(performance, 7.8)
         performance = rollout.rollout_hand(self.decklist,
                                            [34, 21, 1, 5, 7],
                                            [32, 59],
                                            iterations=10)
-        self.assertEqual(performance, 7.8)
+        self.assertEqual(performance, 7)
 
 if __name__ == '__main__':
     unittest.main()

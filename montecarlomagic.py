@@ -43,7 +43,8 @@ for mull_to in range(1, 8):
             kill_turn = rollout.rollout_hand(decklist,
                                              hand,
                                              cards_put_back,
-                                             iterations=args.matches)
+                                             iterations=args.matches,
+                                             verbose=args.verbose)
             if kill_turn < performance:
                 performance = kill_turn
 

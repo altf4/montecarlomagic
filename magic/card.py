@@ -10,16 +10,15 @@ class Card(ABC):
     def __init__(self, id):
         self.id = id
         self.istapped = False
-        self.ishistoric = False
         self.name = ""
         self.priority = 0
-        self.legendary = 0
-        self.land = False
         self.fetchable = False
         self.power = 0
+        self.bonuspower = 0 # Temporary until end-of-turn bonus power
         self.summoning_sick = True
-        self.iscreature = False
         self.tapsfor = defaultdict(lambda: False)
+        self.cardtypes = defaultdict(lambda: False)
+        self.keywords = defaultdict(lambda: False)
 
     def __str__(self):
         return self.name
@@ -47,7 +46,7 @@ class Card(ABC):
         """Is this a legal play right now?
         """
         # If it's a land and we haven't played one yet
-        if self.land:
+        if self.cardtypes["land"]:
             if boardstate.thisturn["playedland"] == False:
                 return True
             else:
@@ -56,11 +55,17 @@ class Card(ABC):
 
     @abstractmethod
     def play(self, boardstate):
-        if self.land:
+        # Prowess triggers
+        if self.cardtypes["instant"] or self.cardtypes["sorcery"]:
+            for card in boardstate.battlefield:
+                if card.keywords["prowess"]:
+                    card.bonuspower += 1
+
+        if self.cardtypes["land"]:
             boardstate.thisturn["playedland"] = True
             boardstate.hand.remove(self)
             boardstate.lands.append(self)
-        elif self.iscreature:
+        elif self.cardtypes["creature"]:
             boardstate.hand.remove(self)
             boardstate.battlefield.append(self)
         else:

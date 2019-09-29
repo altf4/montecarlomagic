@@ -4,7 +4,7 @@ from magic.manacost import ManaCost
 class Mountain(Card):
     def __init__(self, id):
         super().__init__(id)
-        self.land = True
+        self.cardtypes["land"] = True
         self.id = id
         self.tapsfor["red"] = True
         self.priority = 99

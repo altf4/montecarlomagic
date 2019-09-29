@@ -5,7 +5,7 @@ class EidolonOfTheGreatRevel(Card):
     def __init__(self, id):
         super().__init__(id)
         self.power = 2
-        self.iscreature = True
+        self.cardtypes["creature"] = True
         self.priority = 180
         self.name = "Eidolon Of The Great Revel"
 

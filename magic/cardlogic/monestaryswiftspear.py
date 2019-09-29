@@ -1,14 +1,19 @@
 from magic.card import Card
 from magic.manacost import ManaCost
 
-class Skullcrack(Card):
+class MonestarySwiftspear(Card):
     def __init__(self, id):
         super().__init__(id)
-        self.name = "Skullcrack"
-        self.cardtypes["instant"] = True
+        self.power = 1
+        self.cardtypes["creature"] = True
+        self.priority = 195
+        self.name = "Monestary Swiftspear"
+        self.cardtypes["creature"] = True
+        self.keywords["haste"] = True
+        self.keywords["prowess"] = True
 
     def __str__(self):
-        return "Skullcrack, " + str(self.id)
+        return "Monestary Swiftspear, " + str(self.id)
 
     def canplay(self, boardstate):
         # Check for normal conditions
@@ -19,8 +24,7 @@ class Skullcrack(Card):
         return True
 
     def manacost(self, boardstate):
-        return ManaCost("1r")
+        return ManaCost("r")
 
     def play(self, boardstate):
-        boardstate.opponent_life -= 3
         return super().play(boardstate)

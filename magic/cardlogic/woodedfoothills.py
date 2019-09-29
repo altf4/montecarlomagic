@@ -6,7 +6,7 @@ from random import shuffle
 class WoodedFoothills(Card):
     def __init__(self, id):
         super().__init__(id)
-        self.land = True
+        self.cardtypes["land"] = True
         self.id = id
         self.priority = 100
         self.name = "Wooded Foothills"
@@ -32,14 +32,14 @@ class WoodedFoothills(Card):
         # Is there a dual land we can get first?
         for card in boardstate.library:
             # TODO ASSUME that all our fetchable duals can be fetched
-            if card.land and card.fetchable and (len(card.tapsfor) > 1):
+            if card.cardtypes["land"] and card.fetchable and (len(card.tapsfor) > 1):
                 boardstate.library.remove(card)
                 boardstate.lands.append(card)
                 shuffle(boardstate.library)
                 return
         # If not, get a basic
         for card in boardstate.library:
-            if card.land and card.fetchable and (card.tapsfor["red"] or card.tapsfor["green"]):
+            if card.cardtypes["land"] and card.fetchable and (card.tapsfor["red"] or card.tapsfor["green"]):
                 boardstate.library.remove(card)
                 boardstate.lands.append(card)
                 shuffle(boardstate.library)

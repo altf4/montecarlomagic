@@ -8,6 +8,7 @@ class RiftBolt(Card):
         self.priority = 80
         self._suspended = False
         self.name = "Rift Bolt"
+        self.cardtypes["sorcery"] = True
 
     def __str__(self):
         suspended = ""

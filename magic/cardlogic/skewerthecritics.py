@@ -6,6 +6,7 @@ class SkewerTheCritics(Card):
         super().__init__(id)
         self.priority = 220
         self.name = "Skewer The Critics"
+        self.cardtypes["sorcery"] = True
 
     def __str__(self):
         return "Skewer The Critics, " + str(self.id)

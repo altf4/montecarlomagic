@@ -65,6 +65,10 @@ class Boardstate():
         # Reset "end of turn" flags
         self.thisturn = dict.fromkeys(self.thisturn, False)
         self.opponent_life_start_turn = self.opponent_life
+        for card in self.battlefield:
+            card.bonuspower = 0
+        for card in self.library:
+            card.bonuspower = 0
 
         for card in self.lands:
             card.istapped = False
@@ -76,9 +80,11 @@ class Boardstate():
         # TODO: Discard to hand size
         pass
 
-    def autotapper(self, cost, test=False):
+    def autotapper(self, cost, dryrun=False):
         """Tap lands to pay for spells
-        Returns whether this succeeded or not. False means the spell didn't cast
+        Returns whether the spell can be cast or not. False means the spell cant't be cast
+
+        dryrun: Don't actually tap the lands. Just check if we can
         """
         # For spells, check if we have the right mana
         tap_queue = []
@@ -94,7 +100,7 @@ class Boardstate():
             return False
 
         # Try to spend low priority lands first
-        mana_producers.sort(key=lambda x: x.priority, reverse=True)
+        mana_producers.sort(key=lambda x: x.priority, reverse=False)
 
         # Do we have the colors?
         for color in cost.colors:
@@ -107,6 +113,7 @@ class Boardstate():
                         tap_queue.append(card)
                         cost.colors[color] -= 1
                         keepgoing = True
+                        break
                 # if we didn't find a land, we don't have the color
                 if keepgoing == False:
                     return False
@@ -119,6 +126,7 @@ class Boardstate():
                 tap_queue.append(card)
                 cost.colorless -= 1
                 keepgoing = True
+                break
             # if we didn't find a land, we don't have the mana
             if keepgoing == False:
                 return False
@@ -129,7 +137,7 @@ class Boardstate():
             return False
 
         # Okay, now actually tap the Lands
-        if not test:
+        if not dryrun:
             for land in tap_queue:
                 land.istapped = True
         return True
@@ -137,7 +145,7 @@ class Boardstate():
     def destroy(self, card):
         """ Destroy (or sacrifice) given permanent on the battlefield
         """
-        if card.land:
+        if card.cardtypes["land"]:
             self.lands.remove(card)
         else:
             self.battlefield.remove(card)
@@ -146,6 +154,6 @@ class Boardstate():
     def attackwith(self, card):
         """ Attack opponent with the given card
         """
-        assert(card.iscreature)
+        assert(card.cardtypes["creature"])
         card.istapped = True
-        self.opponent_life -= card.power
+        self.opponent_life -= card.power + card.bonuspower

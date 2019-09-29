@@ -5,6 +5,7 @@ class BorosCharm(Card):
     def __init__(self, id):
         super().__init__(id)
         self.name = "Boros Charm"
+        self.cardtypes["instant"] = True
 
     def __str__(self):
         return "Boros Charm, " + str(self.id)
